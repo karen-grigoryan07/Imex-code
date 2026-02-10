@@ -1,0 +1,84 @@
+// ri_property_re_amount.dms
+
+in case of substring(schema_node->contract->reinsurance_contract_label, 0, 5) == 'BQ/26' {
+	variable param1 			= 75;
+	variable param3 			= 70000000;
+	variable param3_currency 	= 'AMD';
+	variable param5 			= 57.1428; 
+	variable min_si_limit 			= 1;
+	variable min_si_limit_currency 	= 'AMD';
+    variable verapmasnabajin   =  0.9;
+}  
+
+// Սկզբնական վերաապ.վճարի հաշվարկ
+
+variable days = date_difference_by_days(policy->to_date, policy->from_date)+1;
+variable days1 = date_difference_by_days(policy->to_date, policy->active_from)+1;
+variable min_amount = 150000 * min_si_limit_curr_rate;
+variable tokos = (100 - policy->delta_discount_percent) /100;
+variable tokos1 = tokos * premium_currency_rate * min_amount * policy->self_cost_rate/100;
+variable arjeq1 =  tokos1 * (param1/100) ;
+variable arjeq2 =  (tokos * (policy->amount* premium_currency_rate -  min_amount) * policy->self_cost_rate)/100;
+variable amount1 = policy->remaining_amount -  policy->delta_amount;
+variable amount2 = min_amount - amount1;
+variable tokos3 =(tokos*(param1/100)) * policy->self_cost_rate/100 ;
+variable tokos4 =tokos * policy->self_cost_rate/100 ;
+variable amount3 = policy->delta_amount - amount2;
+variable arjeq3 = tokos3 * amount2 ;
+variable arjeq4 = tokos4 * amount3;
+variable amount4 = min_amount - policy->remaining_amount ;
+variable amount5 = policy->delta_amount + amount4;
+variable arjeq5 =  ((amount4* (param1/100)) * policy->self_cost_rate/100) * (-1);
+variable arjeq6 = amount5 * policy->self_cost_rate/100;
+variable rate = policy->self_cost_rate;
+// Old Code 
+// variable re_cost = rate*policy->delta_amount*param1/10000 ;
+
+// Karen Grigoryan
+variable re_cost = premium_currency_rate * (risk->delta_cost * (param1/100) * verapmasnabajin);
+
+
+//  delta_amount --- Փոփ. ապ.գումար
+//  amount    ----   Ապահով. գումար
+
+ 
+ 
+in case of policy->delta_amount > 0 {
+    in case of policy->amount < min_amount{ 
+        in case of empty(policy->ins_policies_ver_prev_id){
+                variable re_cost = premium_currency_rate * ( risk->delta_cost * param1/100 ) * verapmasnabajin; 
+            }else{ 
+                variable re_cost=(re_cost * days1/days) * verapmasnabajin + re_calc_cost ;  
+            }
+        } 
+
+        in case of policy->amount > min_amount {
+            in case of empty(policy->ins_policies_ver_prev_id){
+                // Old Code 
+                //variable re_cost = (arjeq1 +arjeq2)* verapmasnabajin; 
+                
+                // Karen Grigoryan
+                variable re_cost = premium_currency_rate * (risk->delta_cost * (param1/100) * verapmasnabajin); 
+        }else{ 
+                in case of policy->remaining_amount - policy->delta_amount > min_amount{
+                    variable re_cost = risk->delta_cost * verapmasnabajin + re_calc_cost; 
+                } 
+                in case of policy->remaining_amount - policy->delta_amount < min_amount{
+                    variable re_cost=( ((arjeq3 + arjeq4 ) / days) * days1) * verapmasnabajin + re_calc_cost ; 
+                } 
+            } 
+        } 
+    }
+
+
+    in case of policy->delta_amount < 0 {
+        in case of amount1 < min_amount {
+            variable re_cost=(re_cost*days1/days) * verapmasnabajin +re_calc_cost;
+        }
+        in case of amount1 > min_amount {
+            variable re_cost = (((arjeq5 + arjeq6)/ days) * days1) * verapmasnabajin + re_calc_cost ;
+        }
+    }
+    return;
+}
+ 

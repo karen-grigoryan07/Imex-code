@@ -1,0 +1,19 @@
+// ri_cargo_re_amount.dms
+
+in case of substring(schema_node->contract->reinsurance_contract_label, 0, 5) == 'BQ/26' { 
+    variable param1 			= 90; 
+    variable param3 			= 17000000;
+    variable param3_currency 	= 'AMD';
+    variable param5 			= 47.06; 
+    variable verapmasnabajin    = 1;
+}  
+
+// re_risk_amount = Գումար, risk->amount = Ապահով. գումար, risk->insurance_rate = %, premium_currency_rate = փոխարժեքն օր. USD → AMD, risk->delta_cost = Ապահով. վճար, 
+
+variable verapmasnabajin = re_risk_amount / risk->amount;  
+
+in case of verapmasnabajin < (param1 / 100){
+    variable re_cost = premium_currency_rate * risk->delta_cost * (param1 / 100) * 0.9;                
+}else{
+    variable re_cost = premium_currency_rate * (risk->delta_cost * verapmasnabajin * 0.9);  
+}
