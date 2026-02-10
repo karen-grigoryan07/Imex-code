@@ -1,0 +1,324 @@
+Creating IMEX Սքրիպտի նկարագրություն
+Պրեդիկատները
+Variable Variablevariable_name = expression;
+
+variable_name – փոփոխականի անունը
+expression– վերագրվող արժեքը(կարող է լինել այլ փոփոխական, թիվ կամ արտահայտություն)
+
+
+Variable variable_name1 = pointer variable_name2;
+
+variable_name1, variable_name2 – փոփոխականի անունը
+
+արդյունքում variable_name1-ը դառնում է variable_name2-ի համարժեքը(հղում), օգտագործվում է Context-ի փոփոխականների path-ը script-ից script փոխանցելու համար
+
+
+array( v1, v2, v3, … vn )- զանգված, որտեղ
+
+v1, v2, v3, … vn-ը զանգվածի անդամներն են ասոցիատիվ զանգվածի դեպքում կենտ համարով անդամները զանգվածի բանալի բառերն են, իսկ զույգ համարներովը՝ արժեքները
+
+
+abs(value) – վերադարձնում է value –ի բացարձակ արժեքը
+
+
+empty(param) – վերադարձնում է TRUE , եթե param –ը դատարկ է և FALSE` հակառակ դեպքում
+
+
+intval(value) – վերադարձնում է value –ի ամբողջ մասը առանց կլորացնելու: Օր.՝ intval(4.6)== 4
+
+
+floatval(value) – վերադարձնում է value –ի ամբողջ մասը առանց կլորացնելու: Օր.՝ floatval(4)== 4.0
+
+
+round(value, precision) – value-ն կլորացնում է precision ճշտությամբ (precision - ստորակետից հետո թվանշանների քանակն է)
+
+
+length(param) – վերադարձնում է param-ի երկարությունը, որտեղ param-ը string տեսակի է
+
+
+array_length(array_name) – վերադարձնում է array_name զանգվածի անդամների քանակը
+
+
+concat(param1, param2) –2 string տիպի փոփոխականներ միավորում է
+
+
+merge(string1,string2) - միավորում է string1 տողը string2 տողի հետ
+
+
+array_merge(param1, param2) –միավորում է param1, param2 զանգվածները
+
+
+implode(param1, array_name) – array_name զանգվածը վերածում է param1 բաժանարարով առանձնացած string-ի
+
+
+substring(string, start, length)- առանձնացնում string-ից length երկարությամբ հատված սկսած start համարով տառից
+
+
+in case of condition { գործողություն1; գործողություն2… } else { գործողություն3; գործողություն4…};
+
+condition – պայման կամ պայմանների համախումբ, որոնց ճիշտ լինելու դեպքում կատարվում են գործողություն1; գործողություն2… գործողությունները,
+
+else { գործողություն3; գործողություն4…}– հակառակ դեպքում՝ գործողություն3; գործողություն4…(այս հատվածը պարտադիր չէ)
+
+
+while condition do { գործողություն1; գործողություն2… } գործողություն1; գործողություն2… գործողությունները կատարվում են այնքան ժամանակ, քանի դեռ ճիշտ է condition – պայման կամ պայմանների համախումբը
+
+
+for each set_name set member [elem] do { գործողություն1; գործողություն2… } Ցիկլի օպերատոր
+
+
+return; – script-ի կատարման ընթացքի ընդհատում
+
+break; – script-ի foreach, while օպերատորների կատարման ընդհատում
+
+
+calculate currency rate from currency_symbol1 to currency_symbol2 date is "date" and save result in variable_name;
+
+արտարժույթի փոխկերպումը այլ արժույթով տվյալ օրով
+
+currency_symbol1 – սկզբնական արժույթի սիմվոլը
+
+currency_symbol2 – փոխակերպման արժույթի սիմվոլը
+
+date – փոխակերպման օրը
+
+variable_name – փոփոխական, որի մեջ պահվում է գործողության արդյունքը
+
+եթե տվյալ օրով արժույթի գործակիցը անհայտ է variable_name փոփոխականի մեջ վերադարձվում է FALSE
+
+
+matrix value from matrix_array find key_name write into variable result_var;
+
+տվյալների զանգվածի մեջ գտնել որևէ արժեք՝ տվյալ բանալի բառին համապատասխան
+
+matrix_arrayv – տվյալների զանգվածի անունը
+
+key_name– բանալի բառը, ըստ որի կատարվում է որոնումը
+
+result_var– փոփոխական, որի մեջ պահվում է գործողության արդյունքը
+
+
+get_intersect_count(array1, array2) – վարադարձնում է array2– ի կրկնությունների քանակը array1– ի մեջ
+
+array1, array2 – կարող ՝ լինել զանգված կամ հասարակ փոփոխական
+
+
+date_difference_by_days(end_date, start_date, round_method) – վերադարձնում է 2 ամսաթվերի տարբերությունը օրերով արտահայտված
+
+end_date – վերջին ամսաթիվը(ավելի մեծ ամսաթիվը)
+
+start_date– սկզբնական ամսաթիվը
+
+round_method – կլորացման մեթոդ
+
+ceil – վերցնում է ամբողջ մասը առանց կլորացնելու
+round – կլորացնում է դեպի վերև
+floor – դեպի ներքև
+
+date_difference_by_years(end_date, start_date, round_method) – վերադարձնում է 2 ամսաթվերի տարբերությունը տարիներով արտահայտված
+
+end_date – վերջին ամսաթիվը(ավելի մեծ ամսաթիվը)
+
+start_date– սկզբնական ամսաթիվը
+
+round_method – կլորացման մեթոդ
+
+ceil – վերցնում է ամբողջ մասը առանց կլորացնելու
+round – կլորացնում է դեպի վերև
+floor – դեպի ներքև
+
+date_difference(end_date, start_date) - -վերադարձնում է զանգված, որը պարունակում է հետևյալ էլեմենտները.
+
+year-տարիների քանակը,
+
+month-ամիսների քանակը,
+
+day - end_date-ի և start_date-ի միջև եղած օրերի քանակը,
+
+եթե end_date < start_date վերադարձնում է FALSE
+
+
+get_curr_date(format) - վերադարձնում է ընթացիկ ամսաթիվը և ժամը նշված format շաբլոնին համապատասխան
+
+օր.՝ format = "Y-m-d H:i"
+
+
+getformatteddate(date,format1,format2) - փոխակերպում է date-ը format2-ից format1-ի, format2-ը բաց է թողնվում, եթե date ունի sql ֆորմատ, այսինքն Y-m-d, օր.` format1 = "d/m/Y H:i"
+
+
+array_push(array,elem1) - ավելացնում է elem1 էլէմենտը array զանգավածում
+
+
+assoc_array_push(array,elem1) - ավելացնում է elem1 էլէմենտը array ասոցիատիվ զանգավածում
+
+
+array_merge(array1,array2) – միավորում է array1 և array2 զանգվածները
+
+
+array_to_assoc(array) - array զանգվածը վեր է ածում ասոցիատիվ զանգվածի
+
+
+sort_array()
+
+
+asort(array1) - դասավորում է array1 զանգվածի էլեմենտները աճման կարգով
+
+
+arsort(array1) - դասավորում է array1 զանգվածի էլեմենտները հակառակ ուղղությամբ, պահպանելով բանալիները
+
+
+ksort(array1) - դասավորում է array1 զանգվածը զանգվածի բանալիների աճման կարգով
+
+
+krsort(array1) - դասավորում է array1 զանգվածի էլեմենտները ըստ զանգվածի բանալիների հակառակ ուղղությամբ
+
+
+lowercase(string) - փոխակերպում է string տողը ներքևի ռեգիստրին համապատասխան
+
+
+uppercase(string) - փոխակերպում է string տողը վերին ռեգիստրին համապատասխան
+
+
+translate(string,locale) - փոխակերպում է string տողի տառերը մի լեզվից մյուսին
+
+locale = arm2eng| arm2ru| eng2arm
+
+
+call_php('php_function_name',params_count(0-5),param1,,,param5) – php ֆունկցիաների կանչման ֆունկցիա, որտեղ
+
+php_function_name – php ֆունկցիայի անունը
+
+params_count – կանչվող php ֆունկցիայի պարամետրերի քանակը
+
+param1,,,param5 - կանչվող php ֆունկցիայի պարամետրերը
+
+օր.՝ call_php:
+
+variable array1 = array("d","lemon", "a","orange", "b","banana", "c","apple");
+
+variable someName = call_php('array_keys',1,array1);
+
+արդյունք: someName = array("d","a", "b", "c");
+
+
+call_script(string) - ներառում է մեկ այլ սքրիպտը ընթացիկ սքրիպտում string – ներառվող սքրիպտի անվանումը
+
+
+get_user_id()- վերադարձնում է օգտագործողի user_id -ին
+
+
+get_user_access_level() - վերադարձնում է օգտագործողի իրավասության մակարդակը
+
+
+get_exchange_rate(currency_id_1,currency_id_2,date,bool) - վերադարձնում է currency_id_1-ի փոխարժեքը currency_id_2-ի նկատմամաբ տրված date օրով
+
+
+get_nchpp_by_date(date) - վերադարձնում է ՆՉՊՊ-ն date օրվա համար
+
+
+is_path_exists(path) - վերադարձնում է TRUE արժեք, եթե context-ում կա այդպիսի փոփոխական
+
+
+do_cbr_action(actionName, params) - որտեղ actionName-ով որոշվում է գործողության տեսակը, որոնք են.
+“new_req” - նոր գրառման ստեղծում rep_cb_requests_batch աղյուսակում, որի դեպքում պրեդիկատը հետ է վերադարձնում գրառման ID-ն;
+“new_row” - նոր գրառման ստեղծում rep_cb_requests_batch_rows աղյուսակում, որի դեպքում պրեդիկատը հետ է վերադարձնում գրառման տողի ID-ն;
+“upd_status” - rep_cb_requests_batch աղյուսակում առկա կոկրետ գրառման մոտ վիճակի սյան (rep_status) արժեքի թարմացում;
+“upd_row” - rep_cb_requests_batch_rows աղյուսակում առկա կոնկրետ գրառման տվյալների թարմացում;
+“get_row” - rep_cb_requests_batch_rows աղյուսակում առկա կոնկրետ գրառման տվյալների ստացում;
+Մեկ հարցման ժամանակ վերադարձվում է միայն մեկ տողի տվյալներ` ամենավերջին կատարած հարցմանը համապատասխան
+Իսկ params-ը իրենից ներկայացնում է այն տվյալները, որոնց հիման վրա պետք է կատարվեն վերը թվարկած գործողությունները: Ընդ որում, այդ տվյալները ներկայացվում են ասոցիատիվ զանգվածի տեսքով, որտեղ յուրաքանչյուր դաշտի անվանումը համըմնկում է բազայում համապատասխան աղյուսակի դաշտի անվանման հետ:
+
+is_bool()
+
+
+is_in_black_list
+
+
+trim(string) - հեռացնում է պրոբելները string տողի սկզբից և վերջից
+
+
+is_variable_exists(var) - վերադարձնում է TRUE, եթե var փոփոխականը կա context-ում, հակառակ դեպքում՝ FALSE
+
+
+getformatteddate(date,to_format,from_format) - փոխակերպում է ամսաթիվը from_format-ից to_format (նայել from_format-ի և to_format-ի արժեքները php փաստաթղթերում)
+
+
+number_format(number , decimals , dec_point , thousands_sep ) - փոխակերպում է number թիվը, որտեղ
+
+decimals - ստորակետից նետո նիշերի քանակը
+
+dec_point - ամբողջ մասի բաժանիչ
+
+thousands_sep - հազարական բաժաննիչ
+
+
+preg_match(pattern,string)- կատարում է регулярному pattern արատահայտությանը string տողի համապատասխանելիության ստուգում
+
+
+is_working_day(date) – վերադարձնում է 1 , եթե date աշխատանքային օր է, և 0 հակառակ դեպքում
+
+
+nearest_working_day(date) – վերադարձնում է date-ին հաջորդող մոտակա աշխատանքային օրը
+
+
+get_nth_working_day(date,day_number,FALSE)
+
+
+shift_date(date,unit,number) - date ամսաթվին ավելացնում է որոշակի ժամանակահատված
+
+date - սկզբնական ամսաթիվը
+
+unit - ժամանակահատվածի չափման միավորը, ներկայացման ձևը, կարող է լինել day |second |minute |hour |month |year
+
+number - unit-ով արտահայտված ժամանակահատվածի քանակը
+
+
+get_number_word(number,locale)- վերադարձնում է number թիվը տառերով, locale լեզվով
+
+locale – համապատասխան լեզվի հապավումը
+
+
+get_dyn_obj_data
+
+get_cb_auto_data
+
+validate_xml
+
+get_bonus_malus
+
+send_policy_cb_report
+
+get_policy_cb_report_id
+
+get_bonus_malus
+
+get_agent_limit_remaining
+
+
+getaccountsbalance
+
+tostring
+
+getdiccurrencies
+
+getmonthalldates
+
+getreportdatesbyweeks
+
+array_push_exlpode
+
+array_value_by_key
+
+get_interval_by_month_count
+
+get_currencies
+
+get_working_days_count
+
+get_money_word
+
+get_date_day
+
+get_date_month
+
+get_date_year
