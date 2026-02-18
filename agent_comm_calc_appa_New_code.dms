@@ -1,0 +1,308 @@
+variable agent_commission = array( 
+    "3393",
+    "3416",
+    "3390",
+    "095",
+    "3619",
+    "3624",
+    "3249",
+    "3623",
+    "3378",
+    "3618",
+    "3625",
+    "3634",
+    "3636",
+    "3637",
+    "3654",
+    "3656",
+    "3657",
+    "3659",
+    "3473",
+    "3661",
+    "3667",
+    "3668",
+    "3670",
+    "3671",
+    "3675",
+    "3672",
+    "3673",
+    "3679",
+    "3680"
+);
+
+
+in case of policy->insured_type == 1 {
+    in case of policy->insured_person->addresses->location_type_id == 1 {
+        variable intersect_agent_commission = get_intersect_count(agent_info->agent_code, agent_commission);
+        in case of intersect_agent_commission != 0 { 
+ 
+            // ԲՄ դաս 1-9, 10, 11-20, 20-26, Լոռի 8
+            in case of policy->insured_person->addresses->location1_id == "8"{  
+                in case of dyn_object->bm_class_label < 10 {
+                    variable actions = array("ASWA_LORI_BM9");  
+                    variable actions = array_push(actions,"CORRECTION");
+                }else{
+                    in case of dyn_object->bm_class_label == 10 {
+                        variable actions = array("ASWA_LORI_BM10");  
+                        variable actions = array_push(actions,"CORRECTION");
+                    } else {
+                        in case of dyn_object->bm_class_label > 10 && dyn_object->bm_class_label < 21 {
+                            variable actions = array("ASWA_LORI_BM11_20");  
+                            variable actions = array_push(actions,"CORRECTION");
+                        } else { 
+                            in case of dyn_object->bm_class_label > 20 && dyn_object->bm_class_label < 26 {
+                                variable actions = array("ASWA_LORI_BM21_25");  
+                                variable actions = array_push(actions,"CORRECTION");
+                            }else{
+                                variable actions = array("ASWA_COMM");  
+                                variable actions = array_push(actions,"CORRECTION"); 
+                            } 
+                        }
+                    }
+                } 
+            }
+
+            // ԲՄ դաս 1-9, 10, 11-20, 20-26, Գեղարքունիք 7
+            in case of policy->insured_person->addresses->location1_id == "7" {  
+                in case of dyn_object->bm_class_label < 10 {
+                    variable actions = array("ASWA_GEGHARKUNIK_BM9");  
+                    variable actions = array_push(actions,"CORRECTION");
+                }else{
+                    in case of dyn_object->bm_class_label == 10 {
+                        variable actions = array("ASWA_GEGHARKUNIK_BM10");  
+                        variable actions = array_push(actions,"CORRECTION");
+                    } else {
+                        in case of dyn_object->bm_class_label > 10 && dyn_object->bm_class_label < 21 {
+                            variable actions = array("ASWA_GEGHARKUNIK_BM11_20");
+                            variable actions = array_push(actions,"CORRECTION");  
+                        } else { 
+                            in case of dyn_object->bm_class_label > 20 && dyn_object->bm_class_label < 26 {
+                                variable actions = array("ASWA_GEGHARKUNIK_BM21_25"); 
+                                variable actions = array_push(actions,"CORRECTION"); 
+                            }else{
+                                variable actions = array("ASWA_COMM");   
+                                variable actions = array_push(actions,"CORRECTION");
+                            } 
+                        }
+                    }
+                } 
+            } 
+
+            // ԲՄ դաս 1-9, 10, 11-20, 20-26, Տավուշ 4
+            in case of policy->insured_person->addresses->location1_id == "4" {  
+                in case of dyn_object->bm_class_label < 10 {
+                    variable actions = array("ASWA_TAVUSH_BM9");
+                    variable actions = array_push(actions,"CORRECTION");  
+                }else{
+                    in case of dyn_object->bm_class_label == 10 {
+                        variable actions = array("ASWA_TAVUSH_BM10"); 
+                        variable actions = array_push(actions,"CORRECTION"); 
+                    } else {
+                        in case of dyn_object->bm_class_label > 10 && dyn_object->bm_class_label < 21 {
+                            variable actions = array("ASWA_TAVUSH_BM11_20");  
+                            variable actions = array_push(actions,"CORRECTION");
+                        } else { 
+                            in case of dyn_object->bm_class_label > 20 && dyn_object->bm_class_label < 26 {
+                                variable actions = array("ASWA_TAVUSH_BM21_25");  
+                                variable actions = array_push(actions,"CORRECTION");
+                            }else{
+                                variable actions = array("ASWA_COMM");   
+                                variable actions = array_push(actions,"CORRECTION");
+                            } 
+                        }
+                    }
+                } 
+            }  
+
+            // ԲՄ դաս 1-9, 10, 11-20, 20-26, Սյունիք 11
+            in case of policy->insured_person->addresses->location1_id == "11" {  
+                in case of dyn_object->bm_class_label < 10 {
+                    variable actions = array("ASWA_SYUNIK_BM9");
+                    variable actions = array_push(actions,"CORRECTION");  
+                }else{
+                    in case of dyn_object->bm_class_label == 10 {
+                        variable actions = array("ASWA_SYUNIK_BM10"); 
+                        variable actions = array_push(actions,"CORRECTION"); 
+                    } else {
+                        in case of dyn_object->bm_class_label > 10 && dyn_object->bm_class_label < 21 {
+                            variable actions = array("ASWA_SYUNIK_BM11_20");  
+                            variable actions = array_push(actions,"CORRECTION");
+                        } else { 
+                            in case of dyn_object->bm_class_label > 20 && dyn_object->bm_class_label < 26 {
+                                variable actions = array("ASWA_SYUNIK_BM21_25");  
+                                variable actions = array_push(actions,"CORRECTION");
+                            }else{
+                                variable actions = array("ASWA_COMM");   
+                                variable actions = array_push(actions,"CORRECTION");
+                            } 
+                        }
+                    }
+                } 
+            } 
+
+            // ԲՄ դաս 1-9, 10, 11-20, 20-26, Վայոց Ձոր 12
+            in case of policy->insured_person->addresses->location1_id == "12" {  
+                in case of dyn_object->bm_class_label < 10 {
+                    variable actions = array("ASWA_VAYOTSDZOR_BM9");
+                    variable actions = array_push(actions,"CORRECTION");  
+                }else{
+                    in case of dyn_object->bm_class_label == 10 {
+                        variable actions = array("ASWA_VAYOTSDZOR_BM10"); 
+                        variable actions = array_push(actions,"CORRECTION"); 
+                    } else {
+                        in case of dyn_object->bm_class_label > 10 && dyn_object->bm_class_label < 21 {
+                            variable actions = array("ASWA_VAYOTSDZOR_BM11_20");  
+                            variable actions = array_push(actions,"CORRECTION");
+                        } else { 
+                            in case of dyn_object->bm_class_label > 20 && dyn_object->bm_class_label < 26 {
+                                variable actions = array("ASWA_VAYOTSDZOR_BM21_25");  
+                                variable actions = array_push(actions,"CORRECTION");
+                            }else{
+                                variable actions = array("ASWA_COMM");   
+                                variable actions = array_push(actions,"CORRECTION");
+                            } 
+                        }
+                    }
+                } 
+            }   
+        }
+    }
+}
+
+in case of policy->insured_type == 2 {
+    in case of policy->insured_organization->addresses->location_type_id == 1 {
+        variable intersect_agent_commission = get_intersect_count(agent_info->agent_code, agent_commission);
+        in case of intersect_agent_commission != 0 { 
+ 
+            // ԲՄ դաս 1-9, 10, 11-20, 20-26, Լոռի 8
+            in case of policy->insured_organization->addresses->location1_id == "8"{  
+                in case of dyn_object->bm_class_label < 10 {
+                    variable actions = array("ASWA_LORI_BM9");  
+                    variable actions = array_push(actions,"CORRECTION");
+                }else{
+                    in case of dyn_object->bm_class_label == 10 {
+                        variable actions = array("ASWA_LORI_BM10");  
+                        variable actions = array_push(actions,"CORRECTION");
+                    } else {
+                        in case of dyn_object->bm_class_label > 10 && dyn_object->bm_class_label < 21 {
+                            variable actions = array("ASWA_LORI_BM11_20");  
+                            variable actions = array_push(actions,"CORRECTION");
+                        } else { 
+                            in case of dyn_object->bm_class_label > 20 && dyn_object->bm_class_label < 26 {
+                                variable actions = array("ASWA_LORI_BM21_25");  
+                                variable actions = array_push(actions,"CORRECTION");
+                            }else{
+                                variable actions = array("ASWA_COMM");  
+                                variable actions = array_push(actions,"CORRECTION"); 
+                            } 
+                        }
+                    }
+                } 
+            }
+
+            // ԲՄ դաս 1-9, 10, 11-20, 20-26, Գեղարքունիք 7
+            in case of policy->insured_organization->addresses->location1_id == "7" {  
+                in case of dyn_object->bm_class_label < 10 {
+                    variable actions = array("ASWA_GEGHARKUNIK_BM9");  
+                    variable actions = array_push(actions,"CORRECTION");
+                }else{
+                    in case of dyn_object->bm_class_label == 10 {
+                        variable actions = array("ASWA_GEGHARKUNIK_BM10");  
+                        variable actions = array_push(actions,"CORRECTION");
+                    } else {
+                        in case of dyn_object->bm_class_label > 10 && dyn_object->bm_class_label < 21 {
+                            variable actions = array("ASWA_GEGHARKUNIK_BM11_20");
+                            variable actions = array_push(actions,"CORRECTION");  
+                        } else { 
+                            in case of dyn_object->bm_class_label > 20 && dyn_object->bm_class_label < 26 {
+                                variable actions = array("ASWA_GEGHARKUNIK_BM21_25"); 
+                                variable actions = array_push(actions,"CORRECTION"); 
+                            }else{
+                                variable actions = array("ASWA_COMM");   
+                                variable actions = array_push(actions,"CORRECTION");
+                            } 
+                        }
+                    }
+                } 
+            } 
+
+            // ԲՄ դաս 1-9, 10, 11-20, 20-26, Տավուշ 4
+            in case of policy->insured_organization->addresses->location1_id == "4" {  
+                in case of dyn_object->bm_class_label < 10 {
+                    variable actions = array("ASWA_TAVUSH_BM9");
+                    variable actions = array_push(actions,"CORRECTION");  
+                }else{
+                    in case of dyn_object->bm_class_label == 10 {
+                        variable actions = array("ASWA_TAVUSH_BM10"); 
+                        variable actions = array_push(actions,"CORRECTION"); 
+                    } else {
+                        in case of dyn_object->bm_class_label > 10 && dyn_object->bm_class_label < 21 {
+                            variable actions = array("ASWA_TAVUSH_BM11_20");  
+                            variable actions = array_push(actions,"CORRECTION");
+                        } else { 
+                            in case of dyn_object->bm_class_label > 20 && dyn_object->bm_class_label < 26 {
+                                variable actions = array("ASWA_TAVUSH_BM21_25");  
+                                variable actions = array_push(actions,"CORRECTION");
+                            }else{
+                                variable actions = array("ASWA_COMM");   
+                                variable actions = array_push(actions,"CORRECTION");
+                            } 
+                        }
+                    }
+                } 
+            }  
+
+            // ԲՄ դաս 1-9, 10, 11-20, 20-26, Սյունիք 11
+            in case of policy->insured_organization->addresses->location1_id == "11" {  
+                in case of dyn_object->bm_class_label < 10 {
+                    variable actions = array("ASWA_SYUNIK_BM9");
+                    variable actions = array_push(actions,"CORRECTION");  
+                }else{
+                    in case of dyn_object->bm_class_label == 10 {
+                        variable actions = array("ASWA_SYUNIK_BM10"); 
+                        variable actions = array_push(actions,"CORRECTION"); 
+                    } else {
+                        in case of dyn_object->bm_class_label > 10 && dyn_object->bm_class_label < 21 {
+                            variable actions = array("ASWA_SYUNIK_BM11_20");  
+                            variable actions = array_push(actions,"CORRECTION");
+                        } else { 
+                            in case of dyn_object->bm_class_label > 20 && dyn_object->bm_class_label < 26 {
+                                variable actions = array("ASWA_SYUNIK_BM21_25");  
+                                variable actions = array_push(actions,"CORRECTION");
+                            }else{
+                                variable actions = array("ASWA_COMM");   
+                                variable actions = array_push(actions,"CORRECTION");
+                            } 
+                        }
+                    }
+                } 
+            } 
+
+            // ԲՄ դաս 1-9, 10, 11-20, 20-26, Վայոց Ձոր 12
+            in case of policy->insured_organization->addresses->location1_id == "12" {  
+                in case of dyn_object->bm_class_label < 10 {
+                    variable actions = array("ASWA_VAYOTSDZOR_BM9");
+                    variable actions = array_push(actions,"CORRECTION");  
+                }else{
+                    in case of dyn_object->bm_class_label == 10 {
+                        variable actions = array("ASWA_VAYOTSDZOR_BM10"); 
+                        variable actions = array_push(actions,"CORRECTION"); 
+                    } else {
+                        in case of dyn_object->bm_class_label > 10 && dyn_object->bm_class_label < 21 {
+                            variable actions = array("ASWA_VAYOTSDZOR_BM11_20");  
+                            variable actions = array_push(actions,"CORRECTION");
+                        } else { 
+                            in case of dyn_object->bm_class_label > 20 && dyn_object->bm_class_label < 26 {
+                                variable actions = array("ASWA_VAYOTSDZOR_BM21_25");  
+                                variable actions = array_push(actions,"CORRECTION");
+                            }else{
+                                variable actions = array("ASWA_COMM");   
+                                variable actions = array_push(actions,"CORRECTION");
+                            } 
+                        }
+                    }
+                } 
+            }   
+        }
+    }
+}
