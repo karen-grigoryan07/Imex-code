@@ -1,0 +1,196 @@
+variable email_info = array();
+variable email_info->host = "10.0.3.124";
+variable email_info->smtp_auth = true ;
+variable email_info->smtp_secure = "tls";
+variable email_info->port = "587";
+variable email_info->is_html = 1;
+variable email_info->user_name = "Online@INGOARMENIA.AM";
+variable email_info->password = "Ingo_16%On";
+variable email_info->email_from = "Online@INGOARMENIA.AM";
+variable email_info->email_cc = '';
+variable email_info->email_subject = insurance->policy_number;
+variable email_info->email_to = '';
+variable email_info->attached_files = array();
+variable email_info->email_body = "";
+ 
+
+in case of empty(policy->ins_policies_ver_prev_id){
+    //  variable attached_file = array();
+    //  variable attached_file->file_id = 11806463;
+    //  variable attached_file->file_name = 'test';
+    //  variable email_info->attached_files = array_push(email_info->attached_files, attached_file);
+
+    variable is_ok = false;
+
+    // Ապահովադիր
+    variable email_to1 = ''; 
+    
+    // Շահառու
+    variable email_to2 = ''; 
+
+    // Սեփականատեր
+    variable email_to3 = ''; 
+
+
+    load database descriptor is_policy.xml;
+    variable cond = insurance->policy_template_id;
+
+    record tree set which
+    name is ins_dic_policy_templates,
+    condition is policy_template_id=cond
+    write into variable polTemplate; 
+    
+
+    variable is_ok = true ; 
+        
+    // Ապահովադիր
+    in case of insurance->policies->insured_type == 1 {
+        in case of is_path_exists (insurance->policies->insured_person->person_datas) {
+            variable email_to1 =  insurance->policies->insured_person->person_datas->email; 
+        }
+    }else{
+        in case of is_path_exists (insurance->policies->insured_organization->organization_datas) {
+            variable email_to1 = insurance->policies->insured_organization->organization_datas->email;
+        }
+    }   
+
+    // Շահառու 
+    in case of insurance->policies->assureds->beneficiary_type == 1 {
+        in case of is_path_exists (insurance->policies->assureds->assured_person->person_datas) {
+            variable email_to2 =  insurance->policies->assureds->assured_person->person_datas->email;  
+        }
+    }else{ 
+        in case of is_path_exists (insurance->policies->assureds->assured_organization->organization_datas) {
+            variable email_to2 =  insurance->policies->assureds->assured_organization->organization_datas->email; 
+        }
+    }
+
+    // Սեփականատեր  
+    in case of is_path_exists(dyn_object->transport_owner_person->transport_owner_person_personal_data) {
+        variable email_to3 = dyn_object->transport_owner_person->transport_owner_person_personal_data->email;  
+    }   
+
+    //-------------------------------------------------------------//
+
+    // Ապահովադիր
+    in case of polTemplate->policy_template_name == "MC Էվոկաբանկ" {  
+        variable email_info->email_to = email_to1;
+    } else {
+        in case of polTemplate->policy_template_name == "MC CONVERSE" {
+            variable email_info->email_to = email_to1; 
+        } else {
+            in case of polTemplate->policy_template_name == "MC Armenian Leasing" {
+                variable email_info->email_to = email_to1;
+            } else { 
+                in case of polTemplate->policy_template_name == "ACBA MC" {
+                    variable email_info->email_to = email_to1;
+                }else {
+                    in case of polTemplate->policy_template_name == "MC Anelik Bank" {
+                        variable email_info->email_to = email_to1;
+                    }else {
+                        in case of polTemplate->policy_template_name == "MC Fast Credit" {
+                            variable email_info->email_to = email_to1;
+                        }else {
+                            in case of polTemplate->policy_template_name == "MC Նորման Կրեդիտ" {
+                                variable email_info->email_to = email_to1;
+                            }else {
+                                in case of polTemplate->policy_template_name == "Motor Bank Agents" {
+                                    variable email_info->email_to = email_to1;
+                                }else {
+                                    in case of polTemplate->policy_template_name == "Inecobank Motor Primary" {
+                                        variable email_info->email_to = email_to1;
+                                    }else {
+                                        in case of polTemplate->policy_template_name == "Inecobank Motor Secondary" {
+                                            variable email_info->email_to = email_to1;
+                                        }else {
+                                            in case of polTemplate->policy_template_name == "Motor Insurance For ACBA Leasing" {
+                                                variable email_info->email_to = email_to1;
+                                            }else {
+                                                in case of polTemplate->policy_template_name == "Motor (more than 1 object)" {
+                                                    variable email_info->email_to = email_to1;
+                                                }else {
+                                                    in case of polTemplate->policy_template_name == "Կամուրջ ՈՒՎԿ ԱՄ" {
+                                                        variable email_info->email_to = email_to1;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } 
+                }
+            }
+        }
+    } 
+
+    // Սեփականատեր
+    in case of polTemplate->policy_template_name == "MC VTB" {
+        variable email_info->email_to = email_to3; 
+    }else {
+        in case of polTemplate->policy_template_name == "New MC Bordero Converse" {
+            variable email_info->email_to = email_to3; 
+        }else {
+            in case of polTemplate->policy_template_name == "MC Բիբլոս Բանկ" {
+                variable email_info->email_to = email_to3;
+            }else {
+                in case of polTemplate->policy_template_name == "Motor Converse Ապահովադիր" { 
+                    variable email_info->email_to = email_to3;  
+                }
+            }
+        }
+    }   
+
+
+        
+variable email_info->email_body = concat('
+    <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
+        <body>
+            <b>Հարգելի՛ Հաճախորդ,</b>
+            <br>
+            <br>
+            Սույնով տեղեկացնում ենք, որ Պայմանագրում որպես Շահառու նշված անձի օգտին գրավադրված Ձեր տրանսպորտային միջոցը, որի ապահովմամբ Ձեզ տրամադրվել է վարկ, այսօրվանից 1 տարի ժամկետով ապահովագրված է ԻՆԳՈ ԱՐՄԵՆԻԱ ԱՓԲԸ-ում:
+            <br>
+            Կից ներկայացնում ենք համապատասխան ապահովագրության Պայմանագիրը։
+            <br>
+            «Տրանսպորտային միջոցների կամավոր ապահովագրության» Կանոնները, որոնց համաձայն իրականացվում է ապահովագրությունը, հասանելի են հետևյալ հղմամբ՝
+            <br>
+            https://cdn.ingoarmenia.am/ingo/documents/casco/HY/Motor-Rules.pdf
+            <br>
+            <br>
+            Պատահարի դեպքում խնդրում ենք անհապաղ հայտնել ԻՆԳՈ ԱՐՄԵՆԻԱ ԱՓԲԸ-ին:  
+            <br>
+            Սույն ապահովագրությանը վերաբերող լրացուցիչ տեղեկատվություն ստանալու համար խնդրում ենք դիմել ԻՆԳՈ ԱՐՄԵՆԻԱ ԱՓԲԸ: 
+            <br>
+            Խնդրում ենք նաև Ձեր էլեկտրոնային հասցեի փոփոխության դեպքում այդ մասին տեղեկացնել ԻՆԳՈ ԱՐՄԵՆԻԱ ԱՓԲԸ-ին։
+            <br>
+            <br>
+            <b>Հարգանքով՝</b>
+            <br>
+            <br>
+            <b>ԻՆԳՈ ԱՐՄԵՆԻԱ ԱՓԲԸ</b>
+        </body>
+    </html>');
+    
+    in case of empty(is_ok) == FALSE {
+        variable printMode = 1;
+        variable objectType = 1;
+        variable objectId = policy->policy_id;
+        variable objectNumber = insurance->policy_number;
+        variable printParams = array();
+
+        variable languages = array();
+        variable languages = array_push(languages, "AM");
+        //variable languages = array_push(languages, "EN");
+        //variable languages = array_push(languages, "RU");
+
+        variable printParams->languages = languages;
+        variable sendEmail = 1;
+        variable res = add_print_control_task(printMode, objectType, objectId, objectNumber, printParams, sendEmail, email_info);
+    }
+}
