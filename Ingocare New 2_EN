@@ -4215,7 +4215,7 @@
                                                     </iNum_0>
                                                     <iNum_1 name="sub_risks_object_4print">
                                                       <conditions>
-                                                        <iNum_0 prop="sub_risk_name" value="Preventive_medical_examination"/>
+                                                        <iNum_0 prop="sub_risk_label" value="Preventive_medical_examination"/>
                                                       </conditions>
                                                     </iNum_1>
                                                   </objects>
@@ -4752,8 +4752,8 @@
                                 </child1>
                                 <child2>
                                   <Label byStyle="" formatFunc="" id="-1">
-                                    <other convertTextToAscii="0" isLocalFont="true"/>
-                                    <properties alpha="1" enabled="true" height="NaN" selectable="1" text="AMD" toolTip="" width="NaN" x="0" y="0"/>
+                                    <other convertTextToAscii="false" isLocalFont="true"/>
+                                    <properties alpha="1" enabled="true" height="NaN" selectable="true" text="AMD" toolTip="" width="NaN" x="0" y="0"/>
                                     <styles borderColor="NAN" borderStyle="" borderThickness="" color="0" cornerRadius="" fontFamily="TimesUnicodenew" fontSize="12" fontWeight="bold" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0" textAlign="left"/>
                                   </Label>
                                 </child2>
@@ -4863,8 +4863,8 @@
                                             <child0>
                                               <Label byStyle="" formatFunc="" id="">
                                                 <other convertTextToAscii="false" isLocalFont="true"/>
-                                                <properties alpha="1" enabled="true" height="NaN" selectable="false" text="To:" toolTip="NULL_VALUE" width="NaN" x="0" y="-4"/>
-                                                <styles borderColor="12040892" borderStyle="inset" borderThickness="1" color="0" cornerRadius="0" fontFamily="TimesUnicodenew" fontSize="12" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0" textAlign="center"/>
+                                                <properties alpha="1" enabled="true" height="NaN" selectable="false" text="To:" toolTip="" width="NaN" x="0" y="0"/>
+                                                <styles borderColor="12040892" borderStyle="inset" borderThickness="1" color="0" cornerRadius="0" fontFamily="TimesUnicodenew" fontSize="12" paddingBottom="0" paddingLeft="0" paddingRight="13" paddingTop="0" textAlign="center"/>
                                               </Label>
                                             </child0>
                                             <child1>
@@ -4874,25 +4874,25 @@
                                                     <HBox byStyle="" id="">
                                                       <children>
                                                         <child0>
-                                                          <Label byStyle="" formatFunc="" id="">
-                                                            <link property="to_date">
-                                                              <objects/>
-                                                            </link>
-                                                            <other convertTextToAscii="false" isLocalFont="true"/>
-                                                            <properties alpha="1" enabled="true" height="18" selectable="false" text="" toolTip="" width="31" x="0" y="2"/>
-                                                            <styles borderColor="12040892" borderStyle="inset" borderThickness="1" color="0" cornerRadius="0" fontFamily="TimesUnicodenew" fontSize="12" fontWeight="bold" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0" textAlign="center"/>
-                                                          </Label>
+                                                          <HBox byStyle="" id="">
+                                                            <children>
+                                                              <child0>
+                                                                <Label byStyle="" formatFunc="" id="">
+                                                                  <link property="to_date">
+                                                                    <objects/>
+                                                                  </link>
+                                                                  <other convertTextToAscii="false" isLocalFont="true"/>
+                                                                  <properties alpha="1" enabled="true" height="18" selectable="false" text="" toolTip="NULL_VALUE" width="NaN" x="0" y="2"/>
+                                                                  <styles borderColor="12040892" borderStyle="inset" borderThickness="1" color="0" cornerRadius="0" fontFamily="TimesUnicodenew" fontSize="12" fontWeight="bold" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0" textAlign="center"/>
+                                                                </Label>
+                                                              </child0>
+                                                            </children>
+                                                            <other isLocalFont="true"/>
+                                                            <properties alpha="1" data="0" enabled="true" horizontalScrollPolicy="auto" percentHeight="100" toolTip="NULL_VALUE" verticalScrollPolicy="auto" width="NaN" x="0" y="0"/>
+                                                            <styles backgroundColor="NAN" borderColor="0" borderSides="left top right bottom" borderStyle="" borderThickness="1" cornerRadius="0" fontFamily="TimesUnicodenew" fontSize="10" horizontalAlign="left" horizontalGap="0" paddingBottom="0" paddingLeft="0" paddingRight="5" paddingTop="0" textAlign="left" verticalAlign="middle"/>
+                                                          </HBox>
                                                         </child0>
-                                                      </children>
-                                                      <other isLocalFont="true"/>
-                                                      <properties alpha="1" data="0" enabled="true" horizontalScrollPolicy="auto" percentHeight="100" toolTip="NULL_VALUE" verticalScrollPolicy="auto" width="NaN" x="0" y="0"/>
-                                                      <styles backgroundColor="NAN" borderColor="0" borderSides="left top right bottom" borderStyle="" borderThickness="1" cornerRadius="0" fontFamily="TimesUnicodenew" fontSize="10" horizontalAlign="left" horizontalGap="0" paddingBottom="0" paddingLeft="0" paddingRight="5" paddingTop="0" textAlign="left" verticalAlign="middle"/>
-                                                    </HBox>
-                                                  </child0>
-                                                  <child1>
-                                                    <HBox byStyle="" id="">
-                                                      <children>
-                                                        <child0>
+                                                        <child1>
                                                           <Text byStyle="" formatFunc="" id="">
                                                             <link property="to_time">
                                                               <objects/>
@@ -4901,20 +4901,20 @@
                                                             <properties alpha="1" enabled="true" height="20" minWidth="10" selectable="false" tabCount="0" text="" toolTip="NULL_VALUE" width="42" x="0" y="0"/>
                                                             <styles borderColor="12040892" borderStyle="inset" borderThickness="1" color="0" cornerRadius="0" fontFamily="TimesUnicodenew" fontSize="12" fontWeight="bold" leading="2" paddingBottom="0" paddingLeft="-2" paddingRight="0" paddingTop="0" textAlign="left"/>
                                                           </Text>
-                                                        </child0>
-                                                        <child1>
+                                                        </child1>
+                                                        <child2>
                                                           <Text byStyle="" formatFunc="" id="">
                                                             <other convertTextToAscii="false" isLocalFont="true"/>
                                                             <properties alpha="1" enabled="true" height="NaN" minWidth="10" selectable="true" tabCount="0" text="   Yerevan time" toolTip="NULL_VALUE" width="NaN" x="42" y="0"/>
                                                             <styles borderColor="12040892" borderStyle="inset" borderThickness="1" color="0" cornerRadius="0" fontFamily="TimesUnicodenew" fontSize="12" leading="2" paddingBottom="0" paddingLeft="-7" paddingRight="0" paddingTop="0" textAlign="left"/>
                                                           </Text>
-                                                        </child1>
+                                                        </child2>
                                                       </children>
                                                       <other isLocalFont="true"/>
                                                       <properties alpha="1" data="0" enabled="true" horizontalScrollPolicy="auto" percentHeight="100" toolTip="NULL_VALUE" verticalScrollPolicy="auto" width="NaN" x="27" y="0"/>
                                                       <styles backgroundColor="NAN" borderColor="0" borderSides="left top right bottom" borderStyle="" borderThickness="1" cornerRadius="0" fontFamily="TimesUnicodenew" fontSize="10" horizontalAlign="left" horizontalGap="0" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0" textAlign="left" verticalAlign="top"/>
                                                     </HBox>
-                                                  </child1>
+                                                  </child0>
                                                 </children>
                                                 <other isLocalFont="true"/>
                                                 <properties alpha="1" data="0" enabled="true" height="22" horizontalScrollPolicy="auto" toolTip="NULL_VALUE" verticalScrollPolicy="auto" width="NaN" x="22" y="-4"/>
@@ -4923,8 +4923,8 @@
                                             </child1>
                                           </children>
                                           <other isLocalFont="true"/>
-                                          <properties alpha="1" data="0" enabled="true" height="NaN" horizontalScrollPolicy="auto" toolTip="NULL_VALUE" verticalScrollPolicy="auto" width="NaN" x="0" y="22"/>
-                                          <styles backgroundColor="NAN" borderColor="12040892" borderSides="left top right bottom" borderStyle="" borderThickness="1" cornerRadius="0" fontFamily="TimesUnicodenew" fontSize="10" horizontalAlign="left" horizontalGap="0" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="-4" textAlign="left" verticalAlign="top"/>
+                                          <properties alpha="1" data="0" enabled="true" height="NaN" horizontalScrollPolicy="auto" toolTip="" verticalScrollPolicy="auto" width="NaN" x="0" y="0"/>
+                                          <styles backgroundColor="NAN" borderColor="12040892" borderSides="left right top bottom" borderStyle="" borderThickness="1" cornerRadius="0" fontFamily="TimesUnicodenew" fontSize="10" horizontalAlign="left" horizontalGap="0" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0" textAlign="left" verticalAlign="top"/>
                                         </HBox>
                                       </child1>
                                     </children>
