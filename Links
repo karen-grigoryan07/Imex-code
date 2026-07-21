@@ -1,1 +1,69 @@
 
+1.	https://masysapahov.am:7890  Մեյսիս թեստային
+2.	https://testagent.ingoarmenia.am  մեսյիս մեր թեստային
+3.	https://insurance.ingoarmenia.am/ մեսյիս մեր թեստային ամբողջական բազա 01/02/2021 դրությամբ
+4.	https://insurance.ingoarmenia.am/imex մեսյիս մեր թեստային ամբողջական բազա 01/02/2021 դրությամբ
+
+
+5.	http://agent3.ingoarmenia.am:82/oktell/claims?clm=MM/20-331814 - masys ռեալ հարթակ հայտեր
+6.	http://agent3.ingoarmenia.am:82/oktell/claims/ssn/3908930073  - masys ռեալ սոց քարտով հարցում
+7.	http://agent3.ingoarmenia.am:82/oktell/claims/pst/008600611 - masys ռեալ անձնագրով հարցում
+8.	http://agent3.ingoarmenia.am:82/Oktell/info/041550530 - masys  ռեալ հարթակ հաճախորդի տվյալների բեռնում
+9.	https://agent1.ingoarmenia.am/ident/aswaClaimCall.php - aswa հատեր
+10.	https://agent1.ingoarmenia.am/ident/aswaCall.php - aswa պայմանագրեր
+11.	https://agent1.ingoarmenia.am/ident/aswaPostman.php - հայտերի չեղարկում
+12.	https://agent.ingoarmenia.am/ident/auto_new.php - HT 09 new
+13.	https://testagent.ingoarmenia.am/oktell/policy?policy=SK111111&ssn=7110910148     ( սոց.քարտ - ssn
+անձնագիր - pnum
+ՀՎՀՀ - hvhh
+պայմանագրի համար - policy
+տեխ.անձնագիր - tpnum
+14.	)
+15.	https://testagent.ingoarmenia.am/Oktell/policy?stnum=01MN020&stdate=2017-12-10
+16.	http://agent3.ingoarmenia.am:82/Oktell/policy?stdate=2020-07-04&stnum=82MA222
+17.	http://agent3.ingoarmenia.am:82/Oktell/policy?policy=SK588117&pnum=4501182493
+18.	https://agent1.ingoarmenia.am/ident/aswaClaimCall.php - հեռախոսահամարի ջնջում ( ջնջվում է ապահովադրից, շահառուից, ident-ից իսկ ապ․ առարկայում չի ջնջվում )
+19.	https://testagent.ingoarmenia.am/ident/onlineSoapClient.php (օրինակները Soap պապկայի մեջ)
+20.	https://agent1.ingoarmenia.am/ident/soapCalls.php - ռեալ հարթակ
+21.	http://agent3.ingoarmenia.am:82/oktell/medical/?bdate=1993-08-29&pnum=AK0383181&ssn=3908930073
+սոց.քարտ - ssn
+անձնագիր - pnum
+պայմանագրի համար - policy
+ծննդյան ամսաթիվ - bdate
+22.	http://agent3.ingoarmenia.am:82/oktell/casco?policy=MC411691&pnum=910378005
+https://testagent.ingoarmenia.am/oktell/casco?policy=MC410460&ssn=3201940631
+սոց.քարտ - ssn
+անձնագիր - pnum
+ՀՎՀՀ - hvhh
+պայմանագրի համար - policy
+տեխ.անձնագիր – tpnum
+
+23.	http://agent3.ingoarmenia.am:82/oktell/property?policy=MC411691&pnum=910378005
+սոց.քարտ - ssn
+անձնագիր - pnum
+ՀՎՀՀ - hvhh
+պայմանագրի համար - policy
+https://testagent.ingoarmenia.am/oktell/property?policy=PC412668&pnum=AM0255252
+
+24.	https://testonline.ingoarmenia.am/api/claim-application/get-claims?dateFrom=2021-06-01T10:00:00&dateTo=2021-07-25T11:30:00   -  online dimumi harcman link
+25.	https://testagent.ingoarmenia.am/ident/onlineHotlineCall.php  - online dimumi harcman html test
+26.	https://agent1.ingoarmenia.am/ident/onlineHotlineCall.php - online dimumi harcman html
+27.	https://my354888-sso.crm.ondemand.com/ - CRM
+28.	https://testagent.ingoarmenia.am/webservice/payments/MV003736 - postman ,vhcarman kargi informacia
+29.	1) Форма путешествий 
+Карточка звонка доступна по ссылке: 
+https://my354888-sso.crm.ondemand.com/sap/public/byd/runtime?bo_ns=http://sap.com/thingTypes&bo=COD_GENERIC&node=Root&operation=OnExtInspect&param.InternalID=6403&param.Type=COD_PhoneCall&sapbyd-agent=TAB&OBNRedirect=X 
+
+2) Форма ОСАГО 
+Карточка звонка доступна по ссылке: 
+https://my354888-sso.crm.ondemand.com/sap/public/byd/runtime?bo_ns=http://sap.com/thingTypes&bo=COD_GENERIC&node=Root&operation=OnExtInspect&param.InternalID=6424&param.Type=COD_PhoneCall&sapbyd-agent=TAB&OBNRedirect=X
+30.	https://docs.google.com/spreadsheets/d/1ziHnr5dLW021V5QJ-jIDvM9txrsYBpuz/edit#gid=985138720 – crm հայտերի ինտեգրում excel
+31.	2022.07.26 Перечень багов по интеграции - Google Sheets  - պայմանագրերի բազայի թեստավորման ֆայլ CRM
+32.	http://inswiki.masysapahov.am/
+
+
+
+
+
+
+
