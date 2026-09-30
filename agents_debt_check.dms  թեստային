@@ -1,0 +1,212 @@
+in case of empty(policy->ins_policies_ver_prev_id) || empty(policy->ins_policies_ver_prev_id)==false && policy->delta_cost!=0 {
+	variable error_text = "";
+	variable agent_debt_info = array();
+	variable PolicyAgents = array();
+
+	in case of empty(policy->ins_policies_ver_prev_id) {
+		in case of insurance->agent_id != 0 {
+			variable PolicyAgents = array_push(PolicyAgents, insurance->agent_id); 
+		}
+	} 
+	
+
+	variable operators_list = array("7248",  /* 000-0300 - Մարիամ Մարգարյան */
+									"6761",  /* 000-0291 - Նարե Զիորյան */
+									"8773",  /* 000-0327 - Աննա Սոշենկո */
+									"7394",  /* 000-0309 - Լոլա Պառավյան */
+									"5678",  /* 000-0269 - Անի Դանիելյան */
+									"2086",  /* 000-0145 - Սիրանուշ Առաքելյան */
+									"6113",  /* 000-0273 - Անաիդա Ալավերդյան */
+									'2768', /* 000-0198 - Տաթև Նավասարդյան */
+									'2772', /* 000-0202 - Աննա Գևորգյան */
+									'2773', /* 000-0203 - Հասմիկ Ավետյան */
+									'2093', /* 000-0136 - Լուսինե Թադևոսյան */
+									'2091', /* 000-0139 - Նարինե Արզումանյան */
+									'2089', /* 000-0143 - Արաքսյա Հարությունյան */
+									'3918', /* 000-0218 - Նելլի Բաղրամյան */
+									'5032', /* 000-0230 - Սոնա Խաչիկյան */
+									'5031', /* 000-0231 - Մերի Ադալյան */
+									'5042', /* 000-0235 - Արմինե Սեդրակյան */
+									'5044', /* 000-0237 - Գոհար Ազարյան */
+									'5045', /* 000-0238 - Թամար Թադևոսյան */
+									'5050', /* 000-0243 - Սարգիս Մուրադյան */
+									'6383', /* 000-0282 - Ռենա Պետրոսյան */
+									'5494', /* 000-0261 - Նարինե Հովհաննիսյան */
+									'5594', /* 000-0266 - Աննա Ալիխանյան */
+									'5596', /* 000-0268 - Ռոզա Հարությունյան */
+									'3250', /* 000-0170 - Աննա Վարտանովա */
+									'7463', /* 000-0314 - Անի Սիմոնյան */
+									'6484', /* 000-0285 - Հասմիկ Սարուխանյան */
+									'6626', /* 000-0289 - Գայանե Բաբայան */
+									'4853', /* 000-0224 - Գայանե Սևումյան */
+									'6762', /* 000-0292 - Քնարիկ Անանյան */
+									'2774', /* 000-0204 - Լուսինե Բաղդասարյան */
+									'6760', /* 000-0290 - Լիլիթ Սարգսյան */
+									'7235', /* 000-0298 - Լաուրա Հովհաննիսյան */
+									'7444', /* 000-0312 - Եվա Գրիգորյան */
+									'8096', /* 000-0319 - Սեդա Գրիգորյան */
+									'8287', /* 000-0324 - Լիլիթ Գրիգորյան */
+									'8358', /* 000-0325 - Ռուզաննա Կիրակոսյան */
+									'8416', /* 000-0326 - Սոնա Սարգսյան */
+									'6578', /* 000-0286 - Աննա Ավագյան */
+									'3266', /* 000-0209 - Հասմիկ Թումանյան */
+									'2094', /* 000-0135 - Սյուզաննա Ղարիբյան */
+									'8879', /* 000-0329 - Սյուզաննա Փամբուխչյան */
+									'8890', /* 000-0330 - Լիդա Խաչիկյան */
+									'8891', /* 000-0331 - Լիլիթ Գալստյան */
+									'8949', /* 000-0332 - Լուսինե Աղաջանյան */
+									'9056', /* 000-0334 – Նաիրա Գալստյան */
+									'9057', /* 000-0335 – Էլեն Մանուկյան */
+									'9058', /* 000-0336 – Գոհար Վարդանյան */
+									'9662', /* 000-0346 – Ելենա Անտոնյան */
+									'9663',  /* 000-0347 – Լիլիթ Սիմոնյան */
+									'9190' , /* 000-0339 – Լիանա Սարգսյան */
+									'10128' , /* 000-0353 – Ալվարդ Հովսեփյան */
+									'10181',  /* 000-0355 – Լիլիթ Ուռուսյան */
+									'10180',  /* 000-0356 – Էլինա Սիմոնյան */
+									'10236',  /* 000-0357 – Մերի Եգանյան */
+									'4210',  /* 000-0210 – Լիլիթ Բակունց */
+									'9308',  /* 000-0344 – Շուշան Գևորգյան */
+									'10661',  /* 000-0361 – Ելենա Մանուկյան */
+									'10737',  /* 000-0362 – Ադանա Մոսինյան */
+								    '10964',  /* 000-0365 – Մարգարիտա Գրիգորյան */
+								    '11009',  /* 000-0367– Լիլիթ Մելիքյան */    
+								    '11011',  /* 000-0369– Անուշ Սարկիսովա */   
+								    '11010',  /* 000-0368– Լիլիթ Բաղդասարյան */   
+								    '11013',  /* 000-0366– Արուսյակ Մխոյան */   
+									'9903', /* 000-0350– Քնարիկ Ղարիբյան */
+									'11158', /* 000-0377– Ռոզա Հակոբջանովա */
+									'9188', /* 000-0342– Լոլիտա Մանուկյան */
+									'11502', /* 000-0389– Անի Ոսկանյան */
+									'11504', /* 000-0391– Գայանե Բաղդասարյան */
+                                    '11759', /*000-0507– Լուսինե Սաֆարյան  */
+                                    '11777', /*000-0508– Սուսաննա Անդրեասյան  */
+									'12096', /*000-0518– Ավետլանա Ղանդիլյան  */
+									'12099', /*000-0521– Լիանա Ասլանյան  */
+                                    '12109', /*000-0515– Մարինե Թադևոսյան  */
+									'11657', /*000-0422 Տաթևիկ Քելեջյան  */
+									'12355', /*000-0523– Հայկանուշ Խաչիկյան */
+									'13117', /*00-0136 – Լուսինե Թադևոսյան */
+									'13118', /*000-0555 – Լուսինե Մանուկյան */
+									'13114', /*000-0552 – Անժելա Մկրտչյան */
+									'9989', /*000-0351 – Արմեն Շեկոյան */
+									'12775', /*000-0539 – Անի Սերոբյան */
+                                                                       
+									'13929', /*000-0582 – Անուշ Մարտիրոսյան */
+									'11340' /* 000-0386– Աննա Զաքարյան */);
+					
+	load database descriptor AGN_Records.xml;
+ 	load database descriptor ds_common.xml;  	
+	load database descriptor is_policy.xml;
+		
+	variable cond = concat("employee_id = ", policy->inputer_id);
+	record tree set which
+	name is  ins_agent_agents,
+	condition is cond
+	write into variable SubAgent;
+
+	in case of empty(SubAgent)==FALSE {
+		for each SubAgent set member sub_agent do {
+		//in case of get_intersect_count(operators_list,sub_agent->agent_id) == 0 {
+				in case of sub_agent->active == 1 {
+					in case of sub_agent->active_to >= get_curr_date("Y-m-d") || sub_agent->active_to=="0000-00-00" {
+						variable PolicyAgents = array_push(PolicyAgents,sub_agent->agent_id);  
+					}
+				}
+		// }
+		}
+	}
+	
+	
+	in case of empty(policy->policy_agent_actions)==FALSE {
+		for each policy->policy_agent_actions set member agent_actions do {
+			variable PolicyAgents = array_push(PolicyAgents,agent_actions->agent_id);
+		}
+	} 
+
+	variable agents_with_debt = 0;
+	variable agents_with_late_debt = 0;
+	variable min_inputer_amount = 0;
+	variable min_agent_amount = 0;
+	for each PolicyAgents set member policyAgent do {
+		variable agent_debt_info = get_agent_limit_remaining(policyAgent,"3000-03-30 00:00:00", 0);
+		variable inputer_debt_info = get_inputer_limit_remaining(policyAgent,"3000-03-30 00:00:00", 0);
+
+		in case of empty(agent_debt_info->min_debt_date)== FALSE {
+			variable agent_late_debt = date_difference_by_days(get_curr_date("Y-m-d"),agent_debt_info->min_debt_date,floor);
+		} else {
+			variable agent_late_debt = 0;
+		}
+		
+		in case of empty(inputer_debt_info->min_debt_date)== FALSE {
+			variable inputer_late_debt = date_difference_by_days(get_curr_date("Y-m-d"),inputer_debt_info->min_debt_date,floor); 
+		} else {
+			variable inputer_late_debt = 0;
+		}
+		
+		in case of get_intersect_count(operators_list,policyAgent) != 0 {
+			in case of is_path_exists(inputer_debt_info->debt_max_amount){
+				variable inputer_debt_info->debt_max_amount = 0;  
+			}
+			in case of is_path_exists( inputer_debt_info->limit_exceeded){
+				variable inputer_debt_info->limit_exceeded = 0;  
+			}
+			in case of is_path_exists(inputer_debt_info->max_day_count_set){
+				variable inputer_debt_info->max_day_count_set = 0;  
+			}  
+		} 
+		
+		in case of is_path_exists(agent_debt_info->limit_set){
+			in case of agent_debt_info->limit_set == 1 || inputer_debt_info->limit_set == 1 {
+				in case of agent_debt_info->debt_max_amount == 1 || inputer_debt_info->debt_max_amount == 1 || agent_debt_info->limit_exceeded == 1 || inputer_debt_info->limit_exceeded == 1 {
+					variable agents_with_debt = agents_with_debt+1; 
+				}
+			}
+		}
+
+		in case of is_path_exists(agent_debt_info->max_day_count_set){
+			in case of agent_debt_info->max_day_count_set==1 || inputer_debt_info->max_day_count_set==1 {
+				in case of agent_late_debt > agent_debt_info->debt_max_day_count || inputer_late_debt > inputer_debt_info->debt_max_day_count {
+					variable agents_with_late_debt = agents_with_late_debt+1;
+				}
+				in case of inputer_debt_info->amount > 1000 {
+					variable min_inputer_amount = 1;
+				}
+				in case of agent_debt_info->amount > 1000{
+					variable min_agent_amount = 1;
+				}
+			}
+		}
+	}
+	 
+	
+	in case of agents_with_debt > 0{
+		variable error_text = concat(error_text,"Ժամանակավորապես չեք կարող կնքել պայմանագրեր: 
+	Խնդիր՝ պարտքի սահմանաչափը գերազանցված է: Անհրաժեշտ է կատարել պարտքի վճարումը և կապվել Ձեր ներկայացուցչի հետ: 1");
+	
+	}
+	in case of min_inputer_amount == 1 && agents_with_late_debt > 0 || min_agent_amount == 1 && agents_with_late_debt > 0 {
+		variable error_text = concat(error_text,"Ժամանակավորապես չեք կարող կնքել պայմանագրեր: 
+	Խնդիր՝ պարտքի ժամկետը գերազանցված է: Անհրաժեշտ է կատարել պարտքի վճարումը և կապվել Ձեր ներկայացուցչի հետ: 2");
+	}	
+	
+}
+
+/*-------------------Գործակալի ակտիվ լինելու ստուգում-------------------*/
+in case of empty(policy->ins_policies_ver_prev_id) && empty(insurance->agent_id)==FALSE {
+	load database descriptor AGN_Records.xml;
+	load database descriptor ds_common.xml;  	
+	
+	variable cond = insurance->agent_id;
+ 	
+	record tree set which
+	name is ins_agent_agents,
+	condition is agent_id=cond
+	write into variable agent_info;
+
+	in case of  (agent_info->active_to < policy_creation_date && agent_info->active_to!='0000-00-00') 
+				|| agent_info->active_from>policy_creation_date || agent_info->active == 0 {
+		variable error_text="Կիրառված գործակալը ակտիվ չէ պայմանագրի կնքման օրվա դրությամբ:";
+		return;
+	}
+}
